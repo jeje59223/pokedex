@@ -1,0 +1,16 @@
+@import './base.css';
+
+#app {
+  /*padding: 0 4rem 4rem 4rem;*/
+  font-weight: normal;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 2px 2px 0px rgba(64, 116, 181, 1),
+  2px -2px 0px rgba(64, 116, 181, 1),
+  -2px 2px 0px rgba(64, 116, 181, 1),
+  -2px -2px 0px rgba(64, 116, 181, 1),
+  2px 0px 0px rgba(64, 116, 181, 1),
+  0px 2px 0px rgba(64, 116, 181, 1),
+  -2px 0px 0px rgba(64, 116, 181, 1),
+  0px -2px 0px rgba(64, 116, 181, 1);
+}
