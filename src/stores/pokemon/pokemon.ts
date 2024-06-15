@@ -32,6 +32,7 @@ export const usePokemon = defineStore('pokemonApi', () => {
     return {
         fetchPokemon,
         pokemonApi,
+        pokemon,
         getPokemon,
         getPokemonByName,
         pokemonByName
