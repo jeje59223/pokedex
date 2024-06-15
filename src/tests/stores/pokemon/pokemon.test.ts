@@ -1,18 +1,26 @@
-import { describe, it, expect, vi } from 'vitest'
-import axios from 'axios'
-import type { Mock } from 'vitest'
-import { onBeforeMount } from 'vue'
+import { describe, it, expect, vi, beforeAll } from 'vitest'
+
 import { usePokemon } from '@/stores/pokemon/pokemon'
-import { storeToRefs } from 'pinia'
+import axios from 'axios'
+import { createPinia, setActivePinia, storeToRefs } from 'pinia'
 import { pokemonsMock } from '@/tests/mocks/pokemon/pokemons-mock'
 
 vi.mock('axios')
+vi.mock('vue-router')
 
 describe('Pokemon store', () => {
-    it('should return pokemons when call fetchPokemon', () => {
-        // (fetchPokemon as Mock).mockResolvedValue(pokemonsMock)
-axios.get.mockResolvedValue({ data: pokemonsMock })
 
-        expect(pokemonApi).toStrictEqual('tot')
+    beforeAll(() => {
+        setActivePinia(createPinia())
+    })
+
+    it('should return pokemons when call fetchPokemon', async () => {
+        const { fetchPokemon } = usePokemon()
+        const { pokemonApi } = storeToRefs(usePokemon())
+        axios.get = vi.fn().mockResolvedValueOnce({ status: 200, data: pokemonsMock })
+
+        await fetchPokemon()
+
+        expect(pokemonApi.value).toStrictEqual(pokemonsMock)
     })
 })
